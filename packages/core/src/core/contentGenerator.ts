@@ -43,12 +43,12 @@ export interface ContentGenerator {
 }
 
 export enum AuthType {
+  USE_OPENAI = 'openai',
+  QWEN_OAUTH = 'qwen-oauth',
   LOGIN_WITH_GOOGLE = 'oauth-personal',
   USE_GEMINI = 'gemini-api-key',
   USE_VERTEX_AI = 'vertex-ai',
   CLOUD_SHELL = 'cloud-shell',
-  USE_OPENAI = 'openai',
-  QWEN_OAUTH = 'qwen-oauth',
 }
 
 export type ContentGeneratorConfig = {
