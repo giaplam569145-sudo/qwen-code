@@ -6,7 +6,7 @@
 
 import type { ContentGenerator } from '../core/contentGenerator.js';
 import { AuthType } from '../core/contentGenerator.js';
-import { getOauthClient } from './oauth2.js';
+import { getGoogleOauthClient } from '../google/googleOAuth2.js';
 import { setupUser } from './setup.js';
 import type { HttpOptions } from './server.js';
 import { CodeAssistServer } from './server.js';
@@ -22,7 +22,7 @@ export async function createCodeAssistContentGenerator(
     authType === AuthType.LOGIN_WITH_GOOGLE ||
     authType === AuthType.CLOUD_SHELL
   ) {
-    const authClient = await getOauthClient(authType, config);
+    const authClient = await getGoogleOauthClient(authType, config);
     const userData = await setupUser(authClient);
     return new CodeAssistServer(
       authClient,
