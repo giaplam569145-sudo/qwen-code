@@ -223,7 +223,7 @@ describe('AuthDialog', () => {
       );
 
       // This is a bit brittle, but it's the best way to check which item is selected.
-      expect(lastFrame()).toContain('● 2. OpenAI');
+      expect(lastFrame()).toContain('● 3. OpenAI');
     });
 
     it('should fall back to default if QWEN_DEFAULT_AUTH_TYPE is not set', () => {
@@ -257,8 +257,8 @@ describe('AuthDialog', () => {
         <AuthDialog onSelect={() => {}} settings={settings} />,
       );
 
-      // Default is Qwen OAuth (first option)
-      expect(lastFrame()).toContain('● 1. Qwen OAuth');
+      // Default is Google (first option)
+      expect(lastFrame()).toContain('● 1. Google');
     });
 
     it('should show an error and fall back to default if QWEN_DEFAULT_AUTH_TYPE is invalid', () => {
@@ -295,8 +295,8 @@ describe('AuthDialog', () => {
       );
 
       // Since the auth dialog doesn't show QWEN_DEFAULT_AUTH_TYPE errors anymore,
-      // it will just show the default Qwen OAuth option
-      expect(lastFrame()).toContain('● 1. Qwen OAuth');
+      // it will just show the default Google option
+      expect(lastFrame()).toContain('● 1. Google');
     });
   });
 
