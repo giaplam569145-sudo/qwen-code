@@ -53,7 +53,7 @@ node_modules/
       parser.loadGitRepoPatterns();
 
       expect(parser.getPatterns()).toEqual([
-        '.git',
+        '/.git',
         'node_modules/',
         '*.log',
         '/dist',
@@ -75,7 +75,7 @@ node_modules/
       );
 
       parser.loadGitRepoPatterns();
-      expect(parser.getPatterns()).toEqual(['.git', 'temp/', '*.tmp']);
+      expect(parser.getPatterns()).toEqual(['/.git', 'temp/', '*.tmp']);
       expect(parser.isIgnored(path.join('temp', 'file.txt'))).toBe(true);
       expect(parser.isIgnored(path.join('src', 'file.tmp'))).toBe(true);
     });
@@ -116,6 +116,10 @@ src/*.tmp
       expect(parser.isIgnored(path.join(projectRoot, '.git', 'HEAD'))).toBe(
         true,
       );
+    });
+
+    it('should not ignore files or directories named .git in subdirectories', () => {
+      expect(parser.isIgnored(path.join('src', '.git'))).toBe(false);
     });
 
     it('should ignore files matching patterns', () => {
@@ -190,7 +194,7 @@ src/*.tmp
       await createTestFile('.gitignore', gitignoreContent);
 
       parser.loadGitRepoPatterns();
-      expect(parser.getPatterns()).toEqual(['.git', '*.log', '!important.log']);
+      expect(parser.getPatterns()).toEqual(['/.git', '*.log', '!important.log']);
     });
   });
 });

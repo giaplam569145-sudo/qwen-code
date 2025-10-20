@@ -27,7 +27,7 @@ export class GitIgnoreParser implements GitIgnoreFilter {
     if (!isGitRepository(this.projectRoot)) return;
 
     // Always ignore .git directory regardless of .gitignore content
-    this.addPatterns(['.git']);
+    this.addPatterns(['/.git']);
 
     const patternFiles = ['.gitignore', path.join('.git', 'info', 'exclude')];
     for (const pf of patternFiles) {
