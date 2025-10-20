@@ -149,7 +149,7 @@ type PendingResponse = {
 
 type MethodHandler = (method: string, params: unknown) => Promise<unknown>;
 
-class Connection {
+export class Connection {
   #pendingResponses: Map<string | number, PendingResponse> = new Map();
   #nextRequestId: number = 0;
   #handler: MethodHandler;
